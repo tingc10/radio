@@ -1,0 +1,16 @@
+{
+  "name": "radio",
+  "version": "1.0.0",
+  "description": "Server to transmit radio signals",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "tsc": "tsc"
+  },
+  "author": "Ting Chen",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^14.0.5",
+    "typescript": "^3.9.3"
+  }
+}
