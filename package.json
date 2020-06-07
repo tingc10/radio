@@ -8,7 +8,9 @@
     "build": "tsc",
     "start:dev": "nodemon",
     "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet",
-    "lint:fix": "yarn lint --fix"
+    "lint:fix": "yarn lint --fix",
+    "daemon:start": "pm2 start ./build/index.js --name radio-transmit",
+    "daemon:stop": "pm2 stop radio-transmit"
   },
   "author": "Ting Chen",
   "license": "ISC",
