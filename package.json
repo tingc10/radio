@@ -5,12 +5,16 @@
   "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "tsc": "tsc"
+    "build": "tsc",
+    "start:dev": "nodemon"
   },
   "author": "Ting Chen",
   "license": "ISC",
   "dependencies": {
+    "@types/express": "^4.17.6",
     "@types/node": "^14.0.5",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.4",
     "typescript": "^3.9.3"
   }
 }
