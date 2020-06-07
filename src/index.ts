@@ -1,24 +1,30 @@
+import express from 'express'
 import { isValidDeviceNumber, isValidSignal } from './utils/code-validation';
 import { transmitSignalToDevice } from './utils/transmit-codes';
 
-const args = process.argv.slice(2);
+const app = express()
+const PORT = process.env.PORT || 3000
 
-if (args.length !== 2) {
-    console.log('Invalid number of params, specify device number (1-3) and signal (on/off)');
-    process.exit(1);
-}
+app.get('/transmit/', (req, res) => {
+  const { query } = req;
+  const { deviceNumber, signal } = query;
 
-const deviceNumber = parseInt(args[0]);
-const signal = args[1];
+  if (!isValidDeviceNumber(deviceNumber)) {
+    res.status(400).send({
+      message: 'Invalid Param: `deviceNumber` must be of value 1-3'
+    });
+  } else if (!isValidSignal(signal)) {
+    res.status(400).send({
+      message: 'Invalid Param: `signal` must be of value on/off'
+    });
+  } else {
+    transmitSignalToDevice(deviceNumber, signal);
+    res.send({
+      message: `Device ${deviceNumber} turned ${signal}`
+    })
+  }
+})
 
-if (!isValidDeviceNumber(deviceNumber)) {
-    console.log('1st param should be a device number (1-3)');
-    process.exit(1);
-}
-
-if (!isValidSignal(signal)) {
-    console.log('2nd param should be a signal (on/off)');
-    process.exit(1);
-}
-
-transmitSignalToDevice(deviceNumber, signal);
+app.listen(PORT, () => {
+  console.log(`Radio transmit API listening on port ${PORT}`)
+})
