@@ -1,6 +1,7 @@
 import express from 'express';
 import { isValidDeviceNumber, isValidSignal } from './utils/code-validation';
 import { transmitSignalToDevice } from './utils/transmit-codes';
+import { bootNgrok } from './utils/boot-ngrok';
 
 interface DeviceTimers {
   [key: number]: NodeJS.Timeout;
@@ -75,4 +76,5 @@ app.get('/transmit/', (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`Radio transmit API listening on port ${PORT}`);
+  bootNgrok(PORT);
 });
