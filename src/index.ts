@@ -1,6 +1,7 @@
 import express from 'express';
 import { isValidDeviceNumber, isValidSignal } from './utils/code-validation';
 import { transmitSignalToDevice } from './utils/transmit-codes';
+import { turnOnLightsJob, turnOffLightsJob } from './utils/grow-lights-cron';
 import { bootNgrok } from './utils/boot-ngrok';
 
 interface DeviceTimers {
@@ -78,3 +79,6 @@ app.listen(PORT, () => {
   console.log(`Radio transmit API listening on port ${PORT}`);
   bootNgrok(PORT);
 });
+
+turnOnLightsJob();
+turnOffLightsJob();
