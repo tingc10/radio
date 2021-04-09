@@ -5,7 +5,7 @@ export const turnOnLightsJob = () => {
   console.log('Initializing turn on lights job');
   // Run turn on job at 9am every day
   new CronJob(
-    '* 9 * * *',
+    '0 9 * * *',
     () => {
       console.log('Turning on grow lights');
       transmitSignalToDevice(1, 'on');
@@ -22,7 +22,7 @@ export const turnOffLightsJob = () => {
   console.log('Initializing turn off lights job');
   // Run turn off job at 1am every day
   new CronJob(
-    '* 1 * * *',
+    '0 1 * * *',
     () => {
       console.log('Turning off grow lights');
       transmitSignalToDevice(1, 'off');
